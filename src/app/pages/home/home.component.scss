@@ -1,0 +1,20 @@
+.bg {
+    background-color: var(--background-color);
+}
+
+h2, h6 {
+    color: var(--app-text);
+}
+
+p {
+    color: var(--para-text);
+}
+
+.search, input, select {
+    background-color: var(--background-color);
+    color: var(--app-text);
+}
+
+.icon, .svg svg {
+    filter: var(--filter);
+}

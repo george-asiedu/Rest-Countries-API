@@ -1,0 +1,15 @@
+button, .border {
+    background-color: var(--background-color);
+}
+
+h2, h6 {
+    color: var(--app-text);
+}
+
+p {
+    color: var(--para-text);
+}
+
+.icon {
+    filter: var(--filter);
+}

@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+:root {
+    --light-background: #f5f2f2;
+    --dark-background: #202C36;
+    --dark-navy: #2B3844;
+    --white: #fff;
+    --text-header: #111517;
+    --texts: #808080;
+}
+
+body {
+    background-color: var(--light-background);
+}
+
+body[data-theme='dark'] {
+    background-color: var(--dark-background);
+}
+
+body[data-theme='light'] {
+    --background-color: var(--white);
+    --app-text: var(--text-header);
+    --para-text: var(--texts);
+    --details-background: var(--white);
+}
+
+body[data-theme='dark'] {
+   --background-color: var(--dark-navy);
+   --app-text: var(--white);
+   --para-text: var(--white);
+   --filter: brightness(0) invert(1);
+   --details-background: var(--dark-background);
+}

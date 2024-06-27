@@ -1,17 +1,18 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, signal } from '@angular/core';
 import { Countries } from '../model/countries';
+import { useFetch } from '../composables/dataFetch';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CountryService {
   private url =  'http://localhost:3000/countries'
+  public apiUrl = signal(this.url)
+  public fetchCountries = useFetch<Countries[]>(this.apiUrl)
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
-  getAllCountries(): Observable<Countries[]> {
-    return this.http.get<Countries[]>(`${this.url}`)
+  getAllCountries() {
+    return this.fetchCountries.data()
   }
 }

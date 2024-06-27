@@ -1,0 +1,22 @@
+<div class="flex flex-col gap-[1.5rem] shadow rounded-md cursor-pointer bg" routerLink="/{{countryList().name}}">
+    <div class="md:h-[160px] 2xl:h-[200px] shadow-sm">
+        <img [src]="countryList().flags.png" class="h-full w-full rounded-t-md" alt="{{ countryList().name }}">
+    </div>
+    <div class="px-[1.5rem] pb-[2rem]">
+        <h2 class="tracking-wide mb-[7px] font-extrabold">{{ countryList().name }}</h2>
+        <div class="flex flex-col">
+            <span class="inline-flex items-center">
+                <h6 class="font-medium mr-[3px] opacity-95">Population: </h6>
+                <p class="font-light text-sm dark:opacity-80">{{ countryList().population }}</p>
+            </span>
+            <span class="inline-flex items-center">
+                <h6 class="font-medium mr-[3px] opacity-95">Region: </h6>
+                <p class="font-light text-sm dark:opacity-80">{{ countryList().region }}</p>
+            </span>
+            <span class="inline-flex items-center">
+                <h6 class="font-medium mr-[3px] opacity-95">Capital: </h6>
+                <p class="font-light text-sm dark:opacity-80">{{ countryList().capital }}</p>
+            </span>
+        </div>
+    </div>
+</div>

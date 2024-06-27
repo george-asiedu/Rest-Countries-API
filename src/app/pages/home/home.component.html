@@ -1,7 +1,7 @@
-<div class="flex px-[5%] mt-[3rem] flex-col md:flex-row md:items-center md:justify-between gap-[2.5rem] md:gap-0">
+<div class="flex px-[5%] mt-[8rem] lg:mt-[6rem] flex-col md:flex-row md:items-center md:justify-between gap-[2.5rem] md:gap-0 w-full">
     <div class="flex items-center gap-[16px] px-[1rem] py-[11px] rounded w-full md:w-[35%] shadow search">
         <img src="../../../assets/search.svg" class="icon" alt="search-icon">
-        <input 
+        <input
             type="text"
             placeholder="Search for a country..."
             [(ngModel)]="search"
@@ -10,9 +10,9 @@
         >
     </div>
     <div class="flex justify-center relative min-w-[250px] h-[50px]">
-        <select 
-            name="filter" 
-            id="filter" 
+        <select
+            name="filter"
+            id="filter"
             [(ngModel)]="selectedRegion"
             (change)="filterByRegion()"
             class="w-full border-none pl-[25px] pr-[30px] appearance-none focus:outline-none opacity-80"
@@ -26,7 +26,7 @@
         </select>
         <div class="svg w-[50px] h-full absolute right-0 flex items-center justify-center">
             <svg width="15" height="15" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.875 2.875L5 5.75L2.125 2.875L1.25 3.75L5 
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.875 2.875L5 5.75L2.125 2.875L1.25 3.75L5
                 7.5L8.75 3.75L7.875 2.875Z" fill="#111"/>
             </svg>
         </div>
@@ -34,32 +34,19 @@
 </div>
 
 <div class="mt-[2.5rem] px-[5%] flex flex-col gap-[2rem]">
+    <ngx-spinner
+        bdColor="rgba(0, 0, 0, 0.8)"
+        size="medium"
+        color="#fff"
+        type="line-scale-pulse-out"
+        *ngIf="isLoading"
+    >
+    <p style="color: white; font-size: 20px;">Loading...</p>
+    </ngx-spinner>
     <div class="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[2rem] lg:gap-[3rem] px-[2rem] md:px-0">
-        @for (country of countryList; track country.alpha3Code) {
-            <div class="flex flex-col gap-[1.5rem] shadow rounded-md cursor-pointer bg" routerLink="/{{country.name}}">
-                <div class="md:h-[160px] 2xl:h-[200px] shadow-sm">
-                    <img [src]="country.flags.png" class="h-full w-full rounded-t-md" alt="{{ country.name }}">
-                </div>
-                <div class="px-[1.5rem] pb-[2rem]">
-                    <h2 class="tracking-wide mb-[7px] font-extrabold">{{ country.name }}</h2>
-                    <div class="flex flex-col">
-                        <span class="inline-flex items-center">
-                            <h6 class="font-medium mr-[3px] opacity-95">Population: </h6>
-                            <p class="font-light text-sm dark:opacity-80">{{ country.population }}</p>
-                        </span>
-                        <span class="inline-flex items-center">
-                            <h6 class="font-medium mr-[3px] opacity-95">Region: </h6>
-                            <p class="font-light text-sm dark:opacity-80">{{ country.region }}</p>
-                        </span>
-                        <span class="inline-flex items-center">
-                            <h6 class="font-medium mr-[3px] opacity-95">Capital: </h6>
-                            <p class="font-light text-sm dark:opacity-80">{{ country.capital }}</p>
-                        </span>
-                    </div>
-                </div>
-            </div>
-        } @empty {
-            <div></div>
-        }
+        <app-country-list
+            *ngFor="let country of countries"
+            [countryList]="country"
+        />
     </div>
 </div>

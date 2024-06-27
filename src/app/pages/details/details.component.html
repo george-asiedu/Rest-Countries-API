@@ -1,6 +1,15 @@
-<div class="bg lg:h-[89vh] lg:overflow-hidden"> 
-    <div class="pt-[2rem] md:pt-[3rem] pb-[2rem] px-[5%]">
-        <button 
+<div class="bg lg:h-[89vh]">
+    <ngx-spinner
+            bdColor="rgba(0, 0, 0, 0.8)"
+            size="medium"
+            color="#fff"
+            type="line-scale-pulse-out"
+            *ngIf="isLoading"
+        >
+            <p style="color: white; font-size: 20px;">Loading...</p>
+        </ngx-spinner>
+    <div class="pt-[8rem] lg:pt-[7rem] pb-[2rem] px-[5%]">
+        <button
             type="button"
             routerLink=""
             class="inline-flex items-center gap-[10px] px-[1.5rem] rounded-md py-[6px]"
@@ -9,8 +18,9 @@
             <p class="dark:opacity-80">Back</p>
         </button>
     </div>
+
     <div class="w-full px-[5%] grid grid-cols-1 lg:grid-cols-2 gap-[1.3rem] md:gap-[3rem] lg:gap-[5rem]">
-        <img [src]="countryDetails.flags.svg" class="rounded-md" alt="country-flag">
+        <img [src]="countryDetails.flag" class="rounded-md" alt="country-flag">
         <div class="flex lg:py-[4%] flex-col">
             <h2 class="tracking-wide mb-[16px] lg:mb-[20px] font-extrabold lg:text-2xl">{{countryDetails.name}}</h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-[2rem] md:gap-0">
@@ -61,8 +71,8 @@
                 <div class="flex flex-col lg:flex-row gap-[20px] lg:gap-[10px] lg:items-center" *ngIf="countryDetails.borders">
                     <h6 class="font-medium opacity-95 leading-none">Border Countries:</h6>
                     <div class="flex gap-[10px] lg:w-[70%]">
-                        <span 
-                            *ngFor="let border of countryDetails.borders; let i = index" 
+                        <span
+                            *ngFor="let border of countryDetails.borders; let i = index"
                             class="border border-none rounded-md w-[96px] py-[6px] shadow-md"
                         >
                             <p class="font-light text-xs text-center dark:opacity-80">{{ border }}</p>

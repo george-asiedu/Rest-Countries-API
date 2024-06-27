@@ -1,5 +1,6 @@
 import { NgIf } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { useLocalStorage } from '../../composables/localStorage';
 
 @Component({
   selector: 'app-header',
@@ -9,17 +10,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent implements OnInit {
-  public isDark: boolean = false
+  public storage = useLocalStorage('theme', 'light')
+  public isDark = this.storage.value() === 'dark'
+
+  constructor() {}
 
   ngOnInit(): void {
-    const storedTheme = localStorage.getItem('theme')
-    this.isDark = storedTheme === 'dark'
-    document.body.setAttribute('data-theme', this.isDark ? 'dark' : 'light')
+    this.isDark = this.storage.value() === 'dark'
   }
 
-  themeSwitcher(): void {
-    this.isDark = !this.isDark
-    document.body.setAttribute('data-theme', this.isDark ? 'dark' : 'light')
-    localStorage.setItem('theme', this.isDark ? 'dark' : 'light')
+  themeSwitcher() {
+    const newTheme = this.isDark ? 'light' : 'dark'
+    this.storage.value.set(newTheme)
+    this.isDark = newTheme === 'dark'
+    document.body.setAttribute('data-theme', newTheme)
   }
 }
